@@ -11,9 +11,6 @@ const errorSMS = document.getElementById('error-sms');
 // selected image 
 let sliders = [];
 
-// If this key doesn't work
-// Find the name in the url and go to their website
-// to create your own api key
 const KEY = '15674931-a9d714b6e9d654524df198e00&q';
 
 // show images 
@@ -50,14 +47,13 @@ const getImages = async (query) => {
         showImages(data.hits);
 
         if (isEmpty(data.hits)) {
-            showErrorInfo('Sorry no search quarry available by your given word...');
+            showErrorInfo('ERROR! Please Enter the words correctly!!');
             imagesArea.style.display = 'none';
         }
     } catch (error) {
-        console.log("Sorry no search quarry available...");
+        console.log("ERROR! Please Enter the words correctly!!");
     }
 }
-// empty object checking for users wrong keyword input...
 function isEmpty(obj) {
     return Object.keys(obj).length === 0;
 }
@@ -87,18 +83,18 @@ const createSlider = () => {
 
     const duration = document.getElementById('duration').value || 1000;
     if (duration > 0) {
-        // crate slider previous next area
+        // create slider previous next area
         sliderContainer.innerHTML = '';
         const prevNext = document.createElement('div');
         prevNext.className = "prev-next d-flex w-100 justify-content-between align-items-center";
         prevNext.innerHTML = ` 
-  <span class="prev" onclick="changeItem(-1)"><i class="fas fa-chevron-left"></i></span>
-  <span class="next" onclick="changeItem(1)"><i class="fas fa-chevron-right"></i></span>
+        <span class="prev" onclick="changeItem(-1)"><i class="fas fa-chevron-left"></i></span>
+        <span class="next" onclick="changeItem(1)"><i class="fas fa-chevron-right"></i></span>
   `;
 
         sliderContainer.appendChild(prevNext);
         document.querySelector('.main').style.display = 'block';
-        // hide image aria
+        // hide image area
         imagesArea.style.display = 'none';
 
 
@@ -116,7 +112,7 @@ const createSlider = () => {
             changeSlide(slideIndex);
         }, duration);
     } else {
-        alert("Negative Time Not Support! \nSo, Please Give Valid Time...");
+        alert("Time can not be NEGATIVE! \nPlease enter a Valid Time.");
     }
 }
 
